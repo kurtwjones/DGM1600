@@ -22,3 +22,4 @@ Weather in orem, utah
 1:53 PM - 35 F
 5:43 PM - 34 F
 6:18 PM - 34 F
+6:22 PM - 35 F
