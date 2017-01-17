@@ -56,5 +56,7 @@ Weather in orem, utah
 9:35 PM - 31 F
 
 9:37 PM - 31 F
+
 Weather in beverly hills CA
 9:03 PM - 54 F
+9:05 PM - 54 F
