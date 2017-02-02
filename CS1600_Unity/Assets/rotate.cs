@@ -1,9 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class rotate : MonoBehaviour {
-    public float speed = 0;
+    //if the value is public you can access it in unity
+    public float speed = 0.5f;
+    //these values are private
+    int xValue = 15;
+    int yValue = 30;
+    int zValue = 45;
+
 	// Use this for initialization
 	void Start () {
       speed = Random.Range(1, 5);
@@ -11,6 +15,6 @@ public class rotate : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        transform.Rotate(new Vector3(15, 30, 45) * Time.deltaTime * speed);
+        transform.Rotate(new Vector3(xValue, yValue, zValue) * Time.deltaTime * speed);
 	}
 }
