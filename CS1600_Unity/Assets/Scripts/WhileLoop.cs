@@ -22,6 +22,16 @@ public class WhileLoop : MonoBehaviour {
             int randomNum = Random.Range(minValue, MaxValue);
             print("Is your number: " + randomNum + "?");
             counter++;
+            if (randomNum > myNumber)
+            {
+                print("My guess was too high... thats guess: "+ counter);
+                MaxValue = randomNum - 1;
+            }
+            if (randomNum < myNumber)
+            {
+                print("My guess was too low... thats guess: "+ counter);
+                minValue = randomNum + 1;
+            }
             if(randomNum == myNumber)
             {
                 print("I got your number! Your number is: " + myNumber);
