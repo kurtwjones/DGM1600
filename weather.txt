@@ -48,5 +48,8 @@ Miami FL weather
 Weather in beverly hills CA
 9:03 PM - 54 F
 9:05 PM - 54 F
+
+
 10:33 AM - 39 F
 10:34 AM - 39 
+F

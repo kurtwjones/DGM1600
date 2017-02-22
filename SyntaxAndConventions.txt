@@ -1,0 +1,14 @@
+Syntax and conventions are very important when dealing
+with scripting. When you are creating names for objects in
+your scripts it helps others see what is is and easily
+identify. For example, using pascal caseing when you create
+a class or camel casing when declaring a variable or all
+caps for a constant. Indenting your code, although not always
+required, is a great way to keep blocks of code organized and
+easily readable. Using comments when you are writing your
+code helps to identify what each block of code is doing.
+to create comments you simply type two formard slashes. Another
+helpful way to keep things looking good and free from errors
+is avoiding using literal numbers. When you create a variable
+its best to assign it a value then use the variable name to call
+back to that value. 
