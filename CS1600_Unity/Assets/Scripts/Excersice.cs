@@ -50,7 +50,7 @@ public class Excersice : MonoBehaviour {
       }
     private void ConvertString(string number)
     {
-        ToString
+      //  ToString
     }
     private void MultiplicationTable ()
     {
