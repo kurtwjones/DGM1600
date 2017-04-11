@@ -6,28 +6,30 @@ using UnityEngine.UI;
 public class Calculator : MonoBehaviour {
 
     List<float> numbers = new List<float> ();
+    
     public InputField userInput;
 	// Use this for initialization
 	void Start ()
     {
         //take number from input box and add to list
-      var myValue = userInput.GetComponent<InputField>();
-       
+        
+        
 	}
 	public void GetInput()
     {
-        string myValue = userInput.text;
-        float Converted = float.Parse(myValue);
+        string input = userInput.text;
+        float converted = float.Parse(input);
+        numbers[0] = converted;
         
     }
 	// create functions for each action
-	public void Addition (float myValue)
+	public void Addition ()
     {
         //get numbers from input box
         //add numbers together
-        print(myValue);
         
-	}
+
+    }
     public void Subtraction()
     {
 
@@ -44,4 +46,14 @@ public class Calculator : MonoBehaviour {
     {
 
     }
+    public void Clear()
+    {
+        userInput.Select();
+        userInput.text = "";  
+    }
+    public void AddToInput(string value)
+    {
+        userInput.text += value;
+    }
+    
 }
