@@ -29,8 +29,7 @@ public class Calculator : MonoBehaviour {
 	}
 	// create functions for each action
 	public void Addition ()
-    {
-       
+    {  
         operation = "Addition";
         if (!(userInput.text == ""))
         {
@@ -82,7 +81,6 @@ public class Calculator : MonoBehaviour {
     }
     public void Equals()
     {
-       
         if (!(userInput.text == ""))
         {
             num2 = userInput.text;
@@ -93,7 +91,7 @@ public class Calculator : MonoBehaviour {
                 case "Addition":
                     answer = exponentialNum1 + convertedNum2;
                     exponentialNum1 = answer;
-                    additionButton.interactable = false;
+                    
                     break;
                 case "Subtraction":
                     answer = exponentialNum1 - convertedNum2;
@@ -114,13 +112,27 @@ public class Calculator : MonoBehaviour {
             string outAnswer = answer.ToString();
             answerField.text = outAnswer;
             Clear();
-            ActivateButtons();
             NumberMatch(answer);
         }
        
     }
-    public void ActivateButtons()
+    public void ChangeButtons()
     {
+        switch (operation)
+        {
+            case "Addition":
+                additionButton.interactable = false;
+                break;
+            case "Subtraction":
+                subtractionButton.interactable = false;
+                break;
+            case "Multiplication":
+                MultiplicationButton.interactable = false;
+                break;
+            case "Division":
+                divisionButton.interactable = false;
+                break;
+        }
        if (additionButton.interactable == false && subtractionButton.interactable == false && MultiplicationButton.interactable == false && divisionButton.interactable == false)
         {
             additionButton.interactable = true;
@@ -131,8 +143,10 @@ public class Calculator : MonoBehaviour {
     }
     public void NumberMatch(float answer)
     {
+        
         if (randomNumber == answer)
         {
+            ChangeButtons();
             textBox.text = "";
             ClearAll();
             randomNumber = Random.Range(0, 101);
