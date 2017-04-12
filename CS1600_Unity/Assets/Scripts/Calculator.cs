@@ -7,73 +7,150 @@ public class Calculator : MonoBehaviour {
 
     public InputField userInput;
     public InputField answerField;
-    public string operation = "";
-    public string num1 = "";
-    public string num2 = "";
-    public float answer = 0f;
-    public float exponentialNum1 = 0f;
-    public string symbol = "";
-    public float convertedNum1 = 0f;
-    public float convertedNum2 = 0f;
+    public Button additionButton;
+    public Button subtractionButton;
+    public Button MultiplicationButton;
+    public Button divisionButton;
+    public Text textBox;
+    string operation = "";
+    string num1 = "";
+    string num2 = "";
+    float answer = 0f;
+    float exponentialNum1 = 0f;
+    string symbol = "";
+    float convertedNum1 = 0f;
+    float convertedNum2 = 0f;
+    float randomNumber = 0;
 	// Use this for initialization
 	void Start ()
-    {  
-        
+    {
+        randomNumber  = Random.Range(0, 101);
+        textBox.text = randomNumber.ToString();   
 	}
 	// create functions for each action
 	public void Addition ()
     {
+       
         operation = "Addition";
-        num1 = userInput.text;
-        Clear();
-        convertedNum1 = float.Parse(num1);
-        exponentialNum1 += convertedNum1;
+        if (!(userInput.text == ""))
+        {
+            num1 = userInput.text;
+            convertedNum1 = float.Parse(num1);
+            exponentialNum1 += convertedNum1;
+            string currentAnswer = exponentialNum1.ToString();
+            answerField.text = currentAnswer;
+            Clear();
+        }
        
     }
     public void Subtraction()
     {
+
         operation = "Subtraction";
-        num1 = userInput.text;
-        exponentialNum1 -= float.Parse(num1);
-        Clear();
+        if (!(userInput.text == ""))
+        {
+            num1 = userInput.text;
+            exponentialNum1 += float.Parse(num1);
+            string currentAnswer = exponentialNum1.ToString();
+            answerField.text = currentAnswer;
+            Clear();
+        }
     }
     public void Multiplication()
     {
         operation = "Multiplication";
-        num1 = userInput.text;
-        Clear();
+        if (!(userInput.text == ""))
+        {
+            num1 = userInput.text;
+            exponentialNum1 += float.Parse(num1);
+            Clear();
+            string currentAnswer = exponentialNum1.ToString();
+            answerField.text = currentAnswer;
+        }
     }
     public void Division()
     {
         operation = "Division";
-        num1 = userInput.text;
-        Clear();
+        if (!(userInput.text == ""))
+        {
+            num1 = userInput.text;
+            exponentialNum1 += float.Parse(num1);
+            Clear();
+            string currentAnswer = exponentialNum1.ToString();
+            answerField.text = currentAnswer;
+        }
     }
     public void Equals()
     {
-        num2 = userInput.text;
-        Clear();
-        convertedNum2 = float.Parse(num2);
-        if (operation == "Addition")
+       
+        if (!(userInput.text == ""))
         {
-           answer = exponentialNum1 + convertedNum2;
-            exponentialNum1 = answer;
-            symbol = "+";
+            num2 = userInput.text;
+            Clear();
+            convertedNum2 = float.Parse(num2);
+            switch (operation)
+            {
+                case "Addition":
+                    answer = exponentialNum1 + convertedNum2;
+                    exponentialNum1 = answer;
+                    additionButton.interactable = false;
+                    break;
+                case "Subtraction":
+                    answer = exponentialNum1 - convertedNum2;
+                    exponentialNum1 = answer;
+                    subtractionButton.interactable = false;
+                    break;
+                case "Multiplication":
+                    answer = exponentialNum1 * convertedNum2;
+                    exponentialNum1 = answer;
+                    MultiplicationButton.interactable = false;
+                    break;
+                case "Division":
+                    answer = exponentialNum1 / convertedNum2;
+                    exponentialNum1 = answer;
+                    divisionButton.interactable = false;
+                    break;
+             }
+            string outAnswer = answer.ToString();
+            answerField.text = outAnswer;
+            Clear();
+            ActivateButtons();
+            NumberMatch(answer);
         }
-        if (operation == "Subtraction")
+       
+    }
+    public void ActivateButtons()
+    {
+       if (additionButton.interactable == false && subtractionButton.interactable == false && MultiplicationButton.interactable == false && divisionButton.interactable == false)
         {
-            answer = exponentialNum1 - convertedNum2;
-            exponentialNum1 = answer;
+            additionButton.interactable = true;
+            subtractionButton.interactable = true;
+            MultiplicationButton.interactable = true;
+            divisionButton.interactable = true;
+        } 
+    }
+    public void NumberMatch(float answer)
+    {
+        if (randomNumber == answer)
+        {
+            textBox.text = "";
+            ClearAll();
+            randomNumber = Random.Range(0, 101);
+            textBox.text = randomNumber.ToString();
         }
-        string outAnswer = answer.ToString();
-        answerField.text = outAnswer + symbol;
-        Clear();
     }
     public void Clear()
     {
+        userInput.text = "";     
+    }
+    public void ClearAll()
+    {
         userInput.text = "";
         answerField.text = "";
-        
+        exponentialNum1 = 0;
+        convertedNum1 = 0;
+        convertedNum2 = 0;
+        answer = 0;
     }
     public void AddToInput(string value)
     {

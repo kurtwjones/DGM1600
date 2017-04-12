@@ -1,0 +1,98 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class Calculator : MonoBehaviour {
+
+    public InputField userInput;
+    public InputField answerField;
+    public string operation = "";
+    public string num1 = "";
+    public string num2 = "";
+    public float answer = 0f;
+    public float exponentialNum1 = 0f;
+    public string symbol = "";
+    public float convertedNum1 = 0f;
+    public float convertedNum2 = 0f;
+	// Use this for initialization
+	void Start ()
+    {  
+        
+	}
+	// create functions for each action
+	public void Addition ()
+    {
+        if (!(userInput.text == ""))
+        {
+            num1 = userInput.text;
+            operation = "Addition";
+            convertedNum1 = float.Parse(num1);
+            exponentialNum1 += convertedNum1;
+            Clear();
+              
+        }
+       
+    }
+    public void Subtraction()
+    {
+        if (!(userInput.text == ""))
+        {
+            num1 = userInput.text;
+            operation = "Subtraction";
+            exponentialNum1 += float.Parse(num1);
+            Clear();
+            
+        }
+    }
+    public void Multiplication()
+    {
+        operation = "Multiplication";
+        num1 = userInput.text;
+        Clear();
+    }
+    public void Division()
+    {
+        operation = "Division";
+        num1 = userInput.text;
+        Clear();
+    }
+    public void Equals()
+    {
+        if (!(userInput.text == ""))
+        {
+            num2 = userInput.text;
+            Clear();
+            convertedNum2 = float.Parse(num2);
+            switch (operation)
+            {
+                case "Addition":
+                    answer = exponentialNum1 + convertedNum2;
+                    exponentialNum1 = answer;
+                    break;
+                case "Subtraction":
+                    answer = exponentialNum1 - convertedNum2;
+                    exponentialNum1 = answer;
+                    break;
+                case "Multiplication":
+
+                    break;
+             }
+            string outAnswer = answer.ToString();
+            answerField.text = outAnswer;
+            Clear();
+        }
+        else
+        answerField.text = num1;
+    }
+    public void Clear()
+    {
+        userInput.text = "";     
+    }
+    public void AddToInput(string value)
+    {
+        userInput.text += value;
+        
+    }
+    
+}
