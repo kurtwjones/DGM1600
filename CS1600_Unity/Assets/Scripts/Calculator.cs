@@ -21,11 +21,15 @@ public class Calculator : MonoBehaviour {
     float convertedNum1 = 0f;
     float convertedNum2 = 0f;
     float randomNumber = 0;
+    float speed = 10f;
+    float yValue = 0f;
+    float zValue = 0f;
 	// Use this for initialization
 	void Start ()
     {
         randomNumber  = Random.Range(0, 101);
-        textBox.text = randomNumber.ToString();   
+        textBox.text = randomNumber.ToString();
+        
 	}
 	// create functions for each action
 	public void Addition ()
@@ -165,6 +169,14 @@ public class Calculator : MonoBehaviour {
         convertedNum1 = 0;
         convertedNum2 = 0;
         answer = 0;
+    }
+     void Update ()
+    {
+        textBox.transform.Translate(Time.deltaTime * speed, yValue, zValue); 
+    }
+    void OnTriggerEnter()
+    {
+
     }
     public void AddToInput(string value)
     {
