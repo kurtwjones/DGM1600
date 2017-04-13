@@ -21,9 +21,12 @@ public class Calculator : MonoBehaviour {
     float convertedNum1 = 0f;
     float convertedNum2 = 0f;
     float randomNumber = 0;
-    float speed = 10f;
+    float speed = 60f;
     float yValue = 0f;
     float zValue = 0f;
+    float startPosition = -788f;
+    float yPos = 139f;
+    float zPos = 91.6f;
 	// Use this for initialization
 	void Start ()
     {
@@ -155,6 +158,7 @@ public class Calculator : MonoBehaviour {
             ClearAll();
             randomNumber = Random.Range(0, 101);
             textBox.text = randomNumber.ToString();
+            textBox.transform.position = new Vector3(startPosition, yPos, zPos);
         }
     }
     public void Clear()
@@ -176,7 +180,7 @@ public class Calculator : MonoBehaviour {
     }
     void OnTriggerEnter()
     {
-
+        print ("HIT");
     }
     public void AddToInput(string value)
     {
