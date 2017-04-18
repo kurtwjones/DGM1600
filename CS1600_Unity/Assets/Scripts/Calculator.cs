@@ -12,18 +12,16 @@ public class Calculator : MonoBehaviour {
     public Button MultiplicationButton;
     public Button divisionButton;
     public Text textBox;
+    public Canvas myCanvas;
+    public GameObject triggerCube;
     string operation = "";
     string num1 = "";
     string num2 = "";
     float answer = 0f;
     float exponentialNum1 = 0f;
-    string symbol = "";
     float convertedNum1 = 0f;
     float convertedNum2 = 0f;
     float randomNumber = 0;
-    float speed = 60f;
-    float yValue = 0f;
-    float zValue = 0f;
     float startPosition = -788f;
     float yPos = 139f;
     float zPos = 91.6f;
@@ -158,7 +156,8 @@ public class Calculator : MonoBehaviour {
             ClearAll();
             randomNumber = Random.Range(0, 101);
             textBox.text = randomNumber.ToString();
-            textBox.transform.position = new Vector3(startPosition, yPos, zPos);
+            
+            //triggerCube.transform.position = new Vector3(startPosition, yPos, zPos);
         }
     }
     public void Clear()
@@ -174,18 +173,16 @@ public class Calculator : MonoBehaviour {
         convertedNum2 = 0;
         answer = 0;
     }
-     void Update ()
-    {
-        textBox.transform.Translate(Time.deltaTime * speed, yValue, zValue); 
-    }
-    void OnTriggerEnter()
-    {
-        print ("HIT");
-    }
+    
+   
     public void AddToInput(string value)
     {
         userInput.text += value;
         
     }
-    
+    void OnTriggerEnter()
+    {
+        myCanvas.enabled = false;
+        textBox.text = "GAME OVER";
+    }
 }
