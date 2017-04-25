@@ -12,7 +12,10 @@ public class Calculator : MonoBehaviour {
     public Button MultiplicationButton;
     public Button divisionButton;
     public Text textBox;
+    public Text textGameOver;
+    public Text scoreText;
     public Canvas myCanvas;
+    public Canvas textCanvas;
     public GameObject triggerCube;
     string operation = "";
     string num1 = "";
@@ -22,12 +25,14 @@ public class Calculator : MonoBehaviour {
     float convertedNum1 = 0f;
     float convertedNum2 = 0f;
     float randomNumber = 0;
-    float startPosition = -788f;
-    float yPos = 139f;
-    float zPos = 91.6f;
-	// Use this for initialization
-	void Start ()
+    float startPosition = -104f;
+    float yPos = 196f;
+    float zPos = 254f;
+    int score = 0;
+    // Use this for initialization
+    void Start ()
     {
+      
         randomNumber  = Random.Range(0, 101);
         textBox.text = randomNumber.ToString();
         
@@ -156,9 +161,15 @@ public class Calculator : MonoBehaviour {
             ClearAll();
             randomNumber = Random.Range(0, 101);
             textBox.text = randomNumber.ToString();
-            
-            //triggerCube.transform.position = new Vector3(startPosition, yPos, zPos);
+            triggerCube.transform.position = new Vector3(startPosition, yPos, zPos);
+            ScoreBox();
         }
+    }
+    private void ScoreBox()
+    {
+        score += 100;
+        string stringScore =score.ToString();
+        scoreText.text = "SCORE: " + stringScore;
     }
     public void Clear()
     {
@@ -183,6 +194,7 @@ public class Calculator : MonoBehaviour {
     void OnTriggerEnter()
     {
         myCanvas.enabled = false;
-        textBox.text = "GAME OVER";
+        textCanvas.enabled = true;
+        textGameOver.text = "GAME OVER!";
     }
 }
