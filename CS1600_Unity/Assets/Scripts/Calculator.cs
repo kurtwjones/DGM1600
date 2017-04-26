@@ -17,6 +17,7 @@ public class Calculator : MonoBehaviour {
     public Canvas myCanvas;
     public Canvas textCanvas;
     public GameObject triggerCube;
+    public Rigidbody myRidgidBody;
     string operation = "";
     string num1 = "";
     string num2 = "";
@@ -32,7 +33,6 @@ public class Calculator : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-      
         randomNumber  = Random.Range(0, 101);
         textBox.text = randomNumber.ToString();
         
@@ -161,6 +161,7 @@ public class Calculator : MonoBehaviour {
             ClearAll();
             randomNumber = Random.Range(0, 101);
             textBox.text = randomNumber.ToString();
+            myRidgidBody.Sleep();
             triggerCube.transform.position = new Vector3(startPosition, yPos, zPos);
             ScoreBox();
         }
@@ -170,6 +171,7 @@ public class Calculator : MonoBehaviour {
         score += 100;
         string stringScore =score.ToString();
         scoreText.text = "SCORE: " + stringScore;
+        
     }
     public void Clear()
     {
@@ -196,5 +198,9 @@ public class Calculator : MonoBehaviour {
         myCanvas.enabled = false;
         textCanvas.enabled = true;
         textGameOver.text = "GAME OVER!";
+    }
+    public void Restart()
+    {
+        Start();
     }
 }
