@@ -164,6 +164,18 @@ public class Calculator : MonoBehaviour {
             myRidgidBody.Sleep();
             triggerCube.transform.position = new Vector3(startPosition, yPos, zPos);
             ScoreBox();
+            if (score >= 500) 
+            {
+               
+            }
+            if (score >= 1000)
+            {
+              
+            }
+            if (score >= 1500)
+            {
+               
+            }
         }
     }
     private void ScoreBox()
@@ -171,7 +183,25 @@ public class Calculator : MonoBehaviour {
         score += 100;
         string stringScore =score.ToString();
         scoreText.text = "SCORE: " + stringScore;
-        
+        switch (score)
+        {
+            case 500:
+                myRidgidBody.velocity = new Vector3(0, -20, 0);
+                break;
+            case 1000:
+                myRidgidBody.velocity = new Vector3(0, -40, 0);
+                break;
+            case 1500:
+                myRidgidBody.velocity = new Vector3(0, -80, 0);
+                break;
+            case 2000:
+                myRidgidBody.velocity = new Vector3(0, -120, 0);
+                break;
+            case 2500:
+                myRidgidBody.velocity = new Vector3(0, -160, 0);
+                break;
+
+        }
     }
     public void Clear()
     {
