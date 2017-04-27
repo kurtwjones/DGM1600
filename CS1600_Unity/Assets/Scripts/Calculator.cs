@@ -30,6 +30,7 @@ public class Calculator : MonoBehaviour {
     float yPos = 196f;
     float zPos = 254f;
     int score = 0;
+    
     // Use this for initialization
     void Start ()
     {
@@ -171,10 +172,13 @@ public class Calculator : MonoBehaviour {
         if (convertedNum2 == 1 || convertedNum2 == 0)
         {
             score += 10;
+            textGameOver.text = "Nice! +10";
         }
         else
         {
             score += 100;
+            textGameOver.text = "Great! +100";
+            
         }
         string stringScore =score.ToString();
         scoreText.text = "SCORE: " + stringScore;
@@ -213,7 +217,6 @@ public class Calculator : MonoBehaviour {
         convertedNum2 = 0;
         answer = 0;
     }
-    
    
     public void AddToInput(string value)
     {
