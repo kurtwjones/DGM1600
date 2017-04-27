@@ -171,25 +171,29 @@ public class Calculator : MonoBehaviour {
         score += 100;
         string stringScore =score.ToString();
         scoreText.text = "SCORE: " + stringScore;
-        switch (score)
+        
+        if (score >= 500)
         {
-            case 500:
-                myRidgidBody.velocity = new Vector3(0, -20, 0);
-                break;
-            case 1000:
-                myRidgidBody.velocity = new Vector3(0, -40, 0);
-                break;
-            case 1500:
-                myRidgidBody.velocity = new Vector3(0, -80, 0);
-                break;
-            case 2000:
-                myRidgidBody.velocity = new Vector3(0, -120, 0);
-                break;
-            case 2500:
-                myRidgidBody.velocity = new Vector3(0, -160, 0);
-                break;
-
+            myRidgidBody.velocity = new Vector3(0, -20, 0);
         }
+        else if (score >= 1000)
+        {
+            myRidgidBody.velocity = new Vector3(0, -40, 0);
+        }     
+        else if (score >= 1500)
+        {
+            myRidgidBody.velocity = new Vector3(0, -80, 0);
+        }      
+        else if (score >= 2000)
+        {
+            myRidgidBody.velocity = new Vector3(0, -120, 0);
+        }
+        else if (score >= 2500)
+        {
+            myRidgidBody.velocity = new Vector3(0, -160, 0);
+        }
+
+        
     }
     public void Clear()
     {
