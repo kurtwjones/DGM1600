@@ -164,18 +164,6 @@ public class Calculator : MonoBehaviour {
             myRidgidBody.Sleep();
             triggerCube.transform.position = new Vector3(startPosition, yPos, zPos);
             ScoreBox();
-            if (score >= 500) 
-            {
-               
-            }
-            if (score >= 1000)
-            {
-              
-            }
-            if (score >= 1500)
-            {
-               
-            }
         }
     }
     private void ScoreBox()
@@ -228,9 +216,5 @@ public class Calculator : MonoBehaviour {
         myCanvas.enabled = false;
         textCanvas.enabled = true;
         textGameOver.text = "GAME OVER!";
-    }
-    public void Restart()
-    {
-        Start();
     }
 }
