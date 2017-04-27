@@ -168,10 +168,16 @@ public class Calculator : MonoBehaviour {
     }
     private void ScoreBox()
     {
-        score += 100;
+        if (convertedNum2 == 1 || convertedNum2 == 0)
+        {
+            score += 10;
+        }
+        else
+        {
+            score += 100;
+        }
         string stringScore =score.ToString();
         scoreText.text = "SCORE: " + stringScore;
-        
         if (score >= 500)
         {
             myRidgidBody.velocity = new Vector3(0, -20, 0);
@@ -192,7 +198,6 @@ public class Calculator : MonoBehaviour {
         {
             myRidgidBody.velocity = new Vector3(0, -160, 0);
         }
-
         
     }
     public void Clear()
