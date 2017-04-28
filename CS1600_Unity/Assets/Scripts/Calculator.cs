@@ -1,10 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Calculator : MonoBehaviour {
-
+    //create Variables
+    public static Action<string> scoreToPass;
     public InputField userInput;
     public InputField answerField;
     public Button additionButton;
@@ -30,13 +32,14 @@ public class Calculator : MonoBehaviour {
     float yPos = 196f;
     float zPos = 254f;
     int score = 0;
-    
-    // Use this for initialization
+    string scoreForTen = "Nice! +10";
+    string scoreForOneHundred = "Great! +100";
+    string scoreForFiveHundred = "Awesome! +500";
+    //initialize game
     void Start ()
     {
-        randomNumber  = Random.Range(0, 101);
-        textBox.text = randomNumber.ToString();
-        
+        randomNumber  = UnityEngine.Random.Range(0, 101);
+        textBox.text = randomNumber.ToString();    
 	}
 	// create functions for each action
 	public void Addition ()
@@ -50,8 +53,7 @@ public class Calculator : MonoBehaviour {
             string currentAnswer = exponentialNum1.ToString();
             answerField.text = currentAnswer;
             Clear();
-        }
-       
+        } 
     }
     public void Subtraction()
     {
@@ -102,22 +104,18 @@ public class Calculator : MonoBehaviour {
                 case "Addition":
                     answer = exponentialNum1 + convertedNum2;
                     exponentialNum1 = answer;
-                    
                     break;
                 case "Subtraction":
                     answer = exponentialNum1 - convertedNum2;
                     exponentialNum1 = answer;
-                    subtractionButton.interactable = false;
                     break;
                 case "Multiplication":
                     answer = exponentialNum1 * convertedNum2;
                     exponentialNum1 = answer;
-                    MultiplicationButton.interactable = false;
                     break;
                 case "Division":
                     answer = exponentialNum1 / convertedNum2;
                     exponentialNum1 = answer;
-                    divisionButton.interactable = false;
                     break;
              }
             string outAnswer = answer.ToString();
@@ -150,21 +148,24 @@ public class Calculator : MonoBehaviour {
             subtractionButton.interactable = true;
             MultiplicationButton.interactable = true;
             divisionButton.interactable = true;
+            StartCoroutine(ScoreHandler(scoreForFiveHundred));
+            score += 500;
+            string stringScore = score.ToString();
+            scoreText.text = "SCORE: " + stringScore;
         } 
     }
     public void NumberMatch(float answer)
-    {
-        
+    { 
         if (randomNumber == answer)
         {
+            ScoreBox();
             ChangeButtons();
             textBox.text = "";
             ClearAll();
-            randomNumber = Random.Range(0, 101);
+            randomNumber = UnityEngine.Random.Range(0, 101);
             textBox.text = randomNumber.ToString();
             myRidgidBody.Sleep();
-            triggerCube.transform.position = new Vector3(startPosition, yPos, zPos);
-            ScoreBox();
+            triggerCube.transform.position = new Vector3(startPosition, yPos, zPos);   
         }
     }
     private void ScoreBox()
@@ -172,37 +173,44 @@ public class Calculator : MonoBehaviour {
         if (convertedNum2 == 1 || convertedNum2 == 0)
         {
             score += 10;
-            textGameOver.text = "Nice! +10";
+            StartCoroutine(ScoreHandler(scoreForTen));
         }
         else
         {
             score += 100;
-            textGameOver.text = "Great! +100";
-            
+            StartCoroutine(ScoreHandler(scoreForOneHundred));
         }
         string stringScore =score.ToString();
         scoreText.text = "SCORE: " + stringScore;
         if (score >= 500)
         {
-            myRidgidBody.velocity = new Vector3(0, -20, 0);
+            Physics.gravity = new Vector3(0, -15, 0);
+            
         }
         else if (score >= 1000)
         {
-            myRidgidBody.velocity = new Vector3(0, -40, 0);
+            Physics.gravity = new Vector3(0, -30, 0);
         }     
         else if (score >= 1500)
         {
-            myRidgidBody.velocity = new Vector3(0, -80, 0);
+            Physics.gravity = new Vector3(0, -45, 0);
         }      
         else if (score >= 2000)
         {
-            myRidgidBody.velocity = new Vector3(0, -120, 0);
+            Physics.gravity = new Vector3(0, -60, 0);
         }
         else if (score >= 2500)
         {
-            myRidgidBody.velocity = new Vector3(0, -160, 0);
+            Physics.gravity = new Vector3(0, -75, 0);
         }
-        
+        else if (score >= 3000)
+        {
+            Physics.gravity = new Vector3(0, -90, 0);
+        }
+        else if (score > 5000)
+        {
+            Physics.gravity = new Vector3(0, -150, 0);
+        }
     }
     public void Clear()
     {
@@ -222,6 +230,12 @@ public class Calculator : MonoBehaviour {
     {
         userInput.text += value;
         
+    }
+    IEnumerator ScoreHandler (string scoreText)
+    {
+        textGameOver.text = scoreText ;
+        yield return new WaitForSeconds(2);
+        textGameOver.text = "";
     }
     void OnTriggerEnter()
     {
